@@ -7,6 +7,7 @@ class CreateUsersTable extends Migration {
 
 	/**
 	 * Run the migrations.
+	 * nombre, apellidos, e-mail, edad, telefono, direccion
 	 *
 	 * @return void
 	 */
@@ -16,8 +17,13 @@ class CreateUsersTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('name');
+			$table->string('surname');
 			$table->string('email')->unique();
+			$table->date('birthdname');
+			$table->string('telephone');
+			$table->string('address');
 			$table->string('password', 60);
+			
 			$table->rememberToken();
 			$table->timestamps();
 		});
