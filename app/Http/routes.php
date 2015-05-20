@@ -11,10 +11,17 @@
 |
 */
 
+// Cover
 Route::get('/', 'WelcomeController@index');
 
+// User home
 Route::get('home', 'HomeController@index');
 
+// Join & quit services
+Route::post('home/join-service', 'HomeController@joinService');
+Route::post('home/quit-service', 'HomeController@quitService');
+
+// Auth routes
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',

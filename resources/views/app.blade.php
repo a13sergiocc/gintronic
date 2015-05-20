@@ -34,6 +34,7 @@
                         <li><a href="/">Index</a></li>
                         <li><a href="/auth/register">Register</a></li>
                         <li><a href="/auth/login">Login</a></li>
+                        <li><a href="/auth/logout">Logout</a></li>
                         <li><a href="/home">Home</a></li>
                     </ul>
                     <form class="navbar-form navbar-right">
