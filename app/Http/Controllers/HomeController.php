@@ -1,5 +1,11 @@
 <?php namespace App\Http\Controllers;
 
+use View;
+use Auth;
+
+use App\User;
+use App\Service;
+
 class HomeController extends Controller {
 
 	/*
@@ -30,7 +36,19 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('home');
+		$current = User::find(Auth::user()->id);
+		$currentContracts = $current->contracts()->get();
+
+		$contracts = Service::has('contracts')->get();
+		$services = Service::orderBy('name')->get();
+
+		return view('partials/home',
+					[
+						'user' => $current,
+						'contracts' => $contracts,
+						'services' => $services,
+						'currentContracts' => $currentContracts
+					]);
 	}
 
 }

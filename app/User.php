@@ -6,8 +6,6 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-use App\Service
-
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
 	use Authenticatable, CanResetPassword;
@@ -18,12 +16,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	public function contracts()
 	{
-		return $this->belongsToMany('Service', 'contracts');
+		return $this->belongsToMany('App\Service', 'contracts');
 	}
 
 	public function payments()
 	{
-		return $this->belongsToMany('Service', 'payments');
+		return $this->belongsToMany('App\Service', 'payments');
 	}
 
 }
