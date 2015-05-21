@@ -17,9 +17,17 @@ Route::get('/', 'WelcomeController@index');
 // User home
 Route::get('home', 'HomeController@index');
 
-// Join & quit services
-Route::post('home/join-service', 'HomeController@joinService');
-Route::post('home/quit-service', 'HomeController@quitService');
+// Contracts
+Route::resource('contract','ContractController');
+
+// Services
+Route::resource('service','ServiceController');
+
+// Payments
+Route::resource('payment','PaymentController');
+
+// Payments
+Route::resource('user','UserController');
 
 // Auth routes
 Route::controllers([

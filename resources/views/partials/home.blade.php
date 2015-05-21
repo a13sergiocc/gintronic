@@ -11,32 +11,40 @@
 	<div class="row">
 		<h4>Servicios contratados</h4>
 		<ul>
-			<?php foreach ($currentContracts as $contract): ?>
+			<?php foreach ($userContracts as $contract): ?>
 				<li>
-					<form class="" action="home/quit-service" method="post">
-						<p>{{$contract->name}} los {{$contract->schedule}}</p>
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
-						<input type="hidden" name="service_id" value="{{ $contract->id }}">
-						<input type="submit" name="quit_service" value="Baja">
+					<p>{{$contract->name}} los {{$contract->schedule}}</p>
+					<form method="POST" action="/contract/{{$contract->id}}">
+						<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+						<input type="hidden" name="_method" value="DELETE"/>
+						<button>Actualizar Datos</button>
 					</form>
+				</li>
+			<?php endforeach; ?>
+		</ul>
+
+		<h4>Historial de pagos</h4>
+		<ul>
+			<?php foreach ($userPayments as $payment): ?>
+				<li>
+					<p>{{$payment->fee}} el {{$payment->created_at}}</p>
 				</li>
 			<?php endforeach; ?>
 		</ul>
 
 		<h4>Total de servicios con usuarios matriculados</h4>
 		<ul>
-			<?php foreach ($contracts as $service): ?>
-				<li>{{$contracts}}</li>
+			<?php foreach ($servicesWithContracts as $service): ?>
 				<li>{{$service->name}}, con un precio de {{$service->fee}} <br/>Descripción:  {{$service->description}}</li>
 			<?php endforeach; ?>
 		</ul>
 
 		<h4>Total de servicios disponibles</h4>
 		<ul>
-			<?php foreach ($services as $service): ?>
+			<?php foreach ($availableServices as $service): ?>
 				<li>
 					{{$service->name}}, con un precio de {{$service->fee}} <br/>Descripción:  {{$service->description}} <br/>Horario:  {{$service->schedule}}
-					<form class="" action="home/join-service" method="post">
+					<form class="" action="" method="post">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						<input type="hidden" name="service_id" value="{{ $service->id }}">
 						<input type="submit" name="join_service" value="Alta">

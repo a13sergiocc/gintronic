@@ -9,7 +9,7 @@ class Service extends Model {
 
 	public function contracts()
 	{
-		return $this->belongsToMany('App\User', 'contracts', 'user_id', 'service_id');
+		return $this->belongsToMany('App\User', 'contracts');
 	}
 
 	public function payments()

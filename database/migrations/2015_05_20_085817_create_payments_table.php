@@ -14,6 +14,10 @@ class CreatePaymentsTable extends Migration {
 	{
 		Schema::create('payments', function(Blueprint $table)
 		{
+			$table->engine = 'InnoDB';
+
+			$table->increments('id');
+
 			$table->integer('user_id')->unsigned()->index();
 			$table->foreign('user_id')->references('id')->on('users');
 

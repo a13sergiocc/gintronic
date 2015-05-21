@@ -145,6 +145,10 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 
+		/*
+		* Forms
+		*/
+		'Collective\Html\HtmlServiceProvider',
 	],
 
 	/*
@@ -193,6 +197,8 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 
+		'Form' => 'Collective\Html\FormFacade',
+		'Html' => 'Collective\Html\HtmlFacade',
 	],
 
 ];
