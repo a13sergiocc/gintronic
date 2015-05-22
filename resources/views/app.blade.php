@@ -31,11 +31,8 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/">Index</a></li>
-                        <li><a href="/auth/register">Register</a></li>
-                        <li><a href="/auth/login">Login</a></li>
+                        <li><a href="/user/{{$user->id}}/edit">Configuración</a></li>
                         <li><a href="/auth/logout">Logout</a></li>
-                        <li><a href="/home">Home</a></li>
                     </ul>
                     <form class="navbar-form navbar-right">
                         <input type="text" class="form-control" placeholder="Search...">

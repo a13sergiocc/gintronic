@@ -17,7 +17,7 @@
 					<form method="POST" action="/contract/{{$contract->id}}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 						<input type="hidden" name="_method" value="DELETE"/>
-						<button>Actualizar Datos</button>
+						<button>Darse de baja</button>
 					</form>
 				</li>
 			<?php endforeach; ?>

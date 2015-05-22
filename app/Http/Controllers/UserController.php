@@ -6,6 +6,8 @@ use App\User;
 
 use Illuminate\Http\Request;
 
+use Redirect;
+
 class UserController extends Controller {
 
 	/**
@@ -59,18 +61,42 @@ class UserController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$user=User::find($id);
+
+		if ($user== null)
+			return Redirect::to('home');
+
+		return view('partials/edit', ['user'=>$user]);
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * Update user in storage.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, Request $request)
 	{
-		//
+		$user = User::find($id);
+
+		if ($request->input('name'))
+			$user->name=$request->input('name');
+		if ($request->input('surname'))
+			$user->surname=$request->input('surname');
+		if ($request->input('birthday'))
+			$user->birthday=$request->input('birthday');
+		if ($request->input('email'))
+			$user->email=$request->input('email');
+		if ($request->input('address'))
+			$user->address=$request->input('address');
+		if ($request->input('telephone'))
+			$user->email=$request->input('telephone');
+		if ($request->input('password'))
+			$user->password=bcrypt($request->input('password'));
+
+		$user->save();
+
+		return Redirect::to('/home');
 	}
 
 	/**
@@ -81,7 +107,11 @@ class UserController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$user = User::find($id);
+
+		$user->delete();
+
+		return Redirect::to('/');
 	}
 
 }
