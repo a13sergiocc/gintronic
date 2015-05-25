@@ -31,6 +31,7 @@ class HomeController extends Controller {
 		$userContracts = $user->contracts;
 		$userPayments = $user->payments;
 
+		$id = [];
 		foreach ($userContracts as $key => $value) {
 			$id[] = $value->id;
 		}

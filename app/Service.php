@@ -9,11 +9,11 @@ class Service extends Model {
 
 	public function contracts()
 	{
-		return $this->belongsToMany('App\User', 'contracts');
+		return $this->belongsToMany('App\User', 'contracts')->withTimestamps();
 	}
 
 	public function payments()
 	{
-		return $this->belongsToMany('App\User', 'payments');
+		return $this->belongsToMany('App\User', 'payments')->withTimestamps();
 	}
 }
