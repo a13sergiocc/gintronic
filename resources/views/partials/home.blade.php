@@ -14,10 +14,13 @@
 			<?php foreach ($userContracts as $contract): ?>
 				<li>
 					<p>{{$contract->name}} los {{$contract->schedule}}</p>
-					<form method="POST" action="/contract/{{$contract->id}}">
+					<form method="POST" action="home/pay-service/{{$contract->pivot->service_id}}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-						<input type="hidden" name="_method" value="DELETE"/>
-						<button>Darse de baja</button>
+						<button>Pagar</button>
+					</form>
+					<form class="" action="home/quit-service/{{$contract->pivot->service_id}}" method="post">
+						<input type="hidden" name="_method" value="delete">
+						<button>Darse de alta</button>
 					</form>
 				</li>
 			<?php endforeach; ?>
@@ -27,7 +30,7 @@
 		<ul>
 			<?php foreach ($userPayments as $payment): ?>
 				<li>
-					<p>{{$payment->fee}} el {{$payment->created_at}}</p>
+					<p>{{$payment->name}}: {{$payment->fee}} el {{$payment->created_at}}</p>
 				</li>
 			<?php endforeach; ?>
 		</ul>
@@ -44,10 +47,9 @@
 			<?php foreach ($availableServices as $service): ?>
 				<li>
 					{{$service->name}}, con un precio de {{$service->fee}} <br/>Descripción:  {{$service->description}} <br/>Horario:  {{$service->schedule}}
-					<form class="" action="" method="post">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
-						<input type="hidden" name="service_id" value="{{ $service->id }}">
-						<input type="submit" name="join_service" value="Alta">
+					<form class="" action="home/join-service/{{$service->id}}" method="post">
+						<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+						<button>Darse de alta</button>
 					</form>
 				</li>
 			<?php endforeach; ?>

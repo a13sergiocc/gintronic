@@ -17,20 +17,28 @@ Route::get('/', 'WelcomeController@index');
 // User home
 Route::get('home', 'HomeController@index');
 
-// Contracts
-Route::resource('contract','ContractController');
 
-// Services
-Route::resource('service','ServiceController');
-
-// Payments
-Route::resource('payment','PaymentController');
-
-// Payments
-Route::resource('user','UserController');
 
 // Auth routes
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
+	'home' => 'HomeController',
 ]);
+
+// APIx
+Route::group(['prefix' => 'api'], function()
+{
+	// Contracts
+	Route::resource('contract','ContractController');
+
+	// Services
+	Route::resource('service','ServiceController');
+
+	// Payments
+	Route::resource('payment','PaymentController');
+
+	// Payments
+	Route::resource('user','UserController');
+
+});

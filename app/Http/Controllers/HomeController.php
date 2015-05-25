@@ -47,33 +47,27 @@ class HomeController extends Controller {
 					]);
 	}
 
-	// public function joinService(Request $request)
-	// {
-	// 	\DB::table('contracts')
-	// 		->insert([
-	// 					'user_id' => $this->current->id,
-	// 					'service_id' => Request::input('service_id')
-	// 				]);
-	//
-	// 	return redirect('home');;
-	// }
-	//
-	// public function quitService()
-	// {
-	// 	\DB::table('contracts')
-	// 		->where('user_id', '=', $this->current->id)
-	// 		->where('service_id', '=', Request::input('service_id'))
-	// 		->delete();
-	//
-	// 	return redirect('home');;
-	// }
-
-	public function payService()
+	public function postJoinService($id)
 	{
-		// Pagar un servicio
-		// Cogemos el id de current usuario
-		// Cogemos el id de servicio
-		// Cogemos el precio relativo al servicio
-		// Creamos un registro nuevo con esos 3 campos
+		$user = User::find(Auth::user()->id);
+		$user->contracts()->attach($id);
+
+		return redirect('home');;
+	}
+
+	public function deleteQuitService($id)
+	{
+		$user = User::find(Auth::user()->id);
+		$user->contracts()->detach($id);
+
+		return redirect('home');;
+	}
+
+	public function postPayService($id)
+	{
+		$user = User::find(Auth::user()->id);
+		$user->payments()->attach($id);
+
+		return redirect('home');;
 	}
 }
