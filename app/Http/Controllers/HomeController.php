@@ -31,11 +31,19 @@ class HomeController extends Controller {
 		$userContracts = $user->contracts;
 		$userPayments = $user->payments;
 
+		foreach ($userContracts as $key => $value) {
+			$id[] = $value->id;
+		}
 		// Services with students
 		$servicesWithContracts = Service::has('contracts')->get();
 
 		// All available services
 		$availableServices = Service::orderBy('name')->get();
+
+		foreach ($availableServices as $key => $value) {
+			if(in_array($value->id, $id))
+				unset($availableServices[$key]);
+		}
 
 		return view('partials/home',
 					[

@@ -31,7 +31,7 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/user/{{$user->id}}/edit">Configuración</a></li>
+                        <li><a href="api/user/{{$user->id}}/edit">Configuración</a></li>
                         <li><a href="/auth/logout">Logout</a></li>
                     </ul>
                     <form class="navbar-form navbar-right">

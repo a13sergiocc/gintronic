@@ -19,6 +19,7 @@
 						<button>Pagar</button>
 					</form>
 					<form class="" action="home/quit-service/{{$contract->pivot->service_id}}" method="post">
+						<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 						<input type="hidden" name="_method" value="delete">
 						<button>Darse de alta</button>
 					</form>
@@ -30,7 +31,7 @@
 		<ul>
 			<?php foreach ($userPayments as $payment): ?>
 				<li>
-					<p>{{$payment->name}}: {{$payment->fee}} el {{$payment->created_at}}</p>
+					<p>{{$payment->name}}: {{$payment->fee}}€ el {{$payment->created_at}}</p>
 				</li>
 			<?php endforeach; ?>
 		</ul>
