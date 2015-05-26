@@ -27,7 +27,7 @@ class HomeController extends Controller {
 	public function index()
 	{
 		// Current user (Model object), contracts and payments
-		$user = User::find(Auth::user()->id);
+		$user = User::findOrFail(Auth::user()->id);
 		$userContracts = $user->contracts;
 		$userPayments = $user->payments;
 
