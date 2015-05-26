@@ -75,7 +75,8 @@ class HomeController extends Controller {
 	public function postPayService($id)
 	{
 		$user = User::find(Auth::user()->id);
-		$user->payments()->attach($id, ['fee' => $expires]);
+		$serviceFee = Service::find($id)->fee;
+		$user->payments()->attach($id, ['fee' => $serviceFee]);
 
 		return redirect('home');;
 	}

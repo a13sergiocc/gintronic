@@ -99,6 +99,7 @@ class UserController extends Controller {
 				$user->password=bcrypt($request->input('password'));
 
 			$user->save();
+
 			return response()->json(['status'=>'ok','data'=>$user], 200);
 	}
 

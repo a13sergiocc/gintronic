@@ -26,7 +26,7 @@
 	</div>
 
 	<?php if (count($userContracts)>0): ?>
-		<div class="row">
+		<div class="col-xs-12">
 			<h4>Servicios contratados</h4>
 			<table class="table table-condensed table-hover">
 				<thead>
@@ -66,23 +66,89 @@
 					<?php endforeach; ?>
 				</tbody>
 			</table>
+		</div>
 	<?php endif; ?>
 
-	<h4>Historial de pagos</h4>
-	<ul>
-		<?php foreach ($userPayments as $payment): ?>
-			<li>
-				<p>{{$payment->name}}: {{$payment->fee}}€ el {{$payment->created_at}}</p>
-			</li>
-		<?php endforeach; ?>
-	</ul>
+	<div class="row">
+		<div class="col-xs-6">
+			<h4>Historial de pagos</h4>
+			<table class="table table-condensed table-hover">
+				<thead>
+					<tr>
+						<th>
+							Servicio
+						</th>
+						<th>
+							Precio
+						</th>
+						<th>
+							Cuando
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ($userPayments as $payment): ?>
+						<tr>
+							<td>
+								{{$payment->name}}
+							</td>
+							<td>
+								{{$payment->fee}}€
+							</td>
+							<td>
+								{{$payment->created_at}}
+							</td>
+						</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
 
-	<h4>Total de servicios con usuarios matriculados</h4>
-	<ul>
-		<?php foreach ($servicesWithContracts as $service): ?>
-			<li>{{$service->name}}, con un precio de {{$service->fee}} <br/>Descripción:  {{$service->description}}</li>
-		<?php endforeach; ?>
-	</ul>
-
+		<div class="col-xs-6">
+			<h4>Total de servicios con usuarios matriculados</h4>
+			<table class="table table-condensed table-hover">
+				<thead>
+					<tr>
+						<th>
+							Servicio
+						</th>
+						<th>
+							Precio
+						</th>
+						<th>
+							Descripción
+						</th>
+						<th>
+							Cuando
+						</th>
+						<th>
+							Alumnos
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ($servicesWithContracts as $service): ?>
+						<tr>
+							<td>
+								{{$service->name}}
+							</td>
+							<td>
+								{{$service->fee}}
+							</td>
+							<td>
+								{{$service->description}}
+							</td>
+							<td>
+								{{$service->schedule}}
+							</td>
+							<td>
+								{{count($service->contracts)}}
+							</td>
+						</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>
 @endsection
