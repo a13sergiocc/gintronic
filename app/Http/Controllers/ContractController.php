@@ -47,7 +47,7 @@ class ContractController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		$contract=Contract::find($id);
+		$contract=Contract::findOrFail($id);
 		$contract->delete();
 
 		return redirect('home');

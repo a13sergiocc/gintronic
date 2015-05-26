@@ -2,11 +2,12 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\User;
-
 use Illuminate\Http\Request;
 
+use Validator;
 use Redirect;
+
+use App\User;
 
 class UserController extends Controller {
 
@@ -79,24 +80,26 @@ class UserController extends Controller {
 	{
 		$user = User::find($id);
 
+		if(!$user)
+			return response()->json(['errors'=>array(['code'=>404,'message'=>'No user with this id.'])],404);
+
 		if ($request->input('name'))
-			$user->name=$request->input('name');
-		if ($request->input('surname'))
-			$user->surname=$request->input('surname');
-		if ($request->input('birthday'))
-			$user->birthday=$request->input('birthday');
-		if ($request->input('email'))
-			$user->email=$request->input('email');
-		if ($request->input('address'))
-			$user->address=$request->input('address');
-		if ($request->input('telephone'))
-			$user->email=$request->input('telephone');
-		if ($request->input('password'))
-			$user->password=bcrypt($request->input('password'));
+				$user->name=$request->input('name');
+			if ($request->input('surname'))
+				$user->surname=$request->input('surname');
+			if ($request->input('birthday'))
+				$user->birthday=$request->input('birthday');
+			if ($request->input('email'))
+				$user->email=$request->input('email');
+			if ($request->input('address'))
+				$user->address=$request->input('address');
+			if ($request->input('telephone'))
+				$user->email=$request->input('telephone');
+			if ($request->input('password'))
+				$user->password=bcrypt($request->input('password'));
 
-		$user->save();
-
-		return Redirect::to('/home');
+			$user->save();
+			return response()->json(['status'=>'ok','data'=>$user], 200);
 	}
 
 	/**
@@ -109,8 +112,10 @@ class UserController extends Controller {
 	{
 		$user = User::find($id);
 
-		$user->delete();
+		if(!$user)
+			return response()->json(['errors'=>array(['code'=>404,'message'=>'No user with this id.'])],404);
 
-		return Redirect::to('/');
+		$user->delete();
+			return response()->json(['code'=>204,'message'=>'User deleted'],204);
 	}
 }

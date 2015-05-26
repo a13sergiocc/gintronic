@@ -12,7 +12,7 @@
 			<p>{{$error}}</p>
 		@endforeach
 
-		<form method="POST" action="/user/{{$user->id}}">
+		<form method="POST" action="/api/user/{{$user->id}}">
 			<p>
 				<label for="name">Nombre Usuario: </label>
 				<input type="text" name="name" value="{{$user->name}}"/>
@@ -38,7 +38,7 @@
 				<input type="text" name="telephone" value="{{$user->telephone}}"/>
 			</p>
 			<p>
-				<label for="password">Nueva Contraseña:</label>
+				<label for="password">Contraseña:</label>
 				<input type="password" name="password" value=""/>
 			</p>
 
@@ -49,7 +49,7 @@
 		</form>
 
 		<h2>Borrado de perfil</h2>
-		{!! Form::open(array('url'=>'user/'.$user->id,'method'=>'DELETE')) !!}
+		{!! Form::open(array('url'=>'/api/user/'.$user->id,'method'=>'DELETE')) !!}
 			{!! Form::submit('Borrar mi Perfil') !!}
 		{!! Form::close() !!}
 
